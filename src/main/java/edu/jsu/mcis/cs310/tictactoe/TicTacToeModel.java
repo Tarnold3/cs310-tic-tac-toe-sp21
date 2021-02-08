@@ -3,11 +3,11 @@ package edu.jsu.mcis.cs310.tictactoe;
 /**
 * TicTacToeModel implements the Model for the Tic-Tac-Toe game.
 *
-* @author  Your Name
+* @author  Tucker Arnold
 * @version 1.0
 */
 public class TicTacToeModel {
-    
+                 
     /**
      * The contents of the Tic-Tac-Toe game board
      */
@@ -53,7 +53,12 @@ public class TicTacToeModel {
         /* Initialize board (fill with TicTacToeSquare.EMPTY) */
         
         // INSERT YOUR CODE HERE
-        
+        //Setting the dimensions of the board
+        for(int i = 0; i < (dimension); i++){
+            for(int j = 0; j < (dimension); j++){
+                board[i][j] = TicTacToeSquare.EMPTY;
+            }
+        }       
     }
     /**
     * Use isValidSquare(int, int) to check if the specified square is in range,
@@ -71,10 +76,19 @@ public class TicTacToeModel {
     */
     public boolean makeMark(int row, int col) {
         
-        // INSERT YOUR CODE HERE
-        
-        return false; // this is a stub; you may need to remove it later!
-        
+        if(xTurn == true && (isValidSquare(row, col)== true) && (isSquareMarked(row, col) == false)){
+        xTurn = !xTurn;
+        board[row][col] = TicTacToeSquare.X;
+        return true;
+    }
+        else if(xTurn == false && (isValidSquare(row, col)== true) && (isSquareMarked(row, col) == false)){
+        xTurn = !xTurn;
+        board[row][col] = TicTacToeSquare.X;
+        return true;
+        }
+        else{
+        return false;
+                }
     }
     
     /**
@@ -89,10 +103,17 @@ public class TicTacToeModel {
     private boolean isValidSquare(int row, int col) {
         
         // INSERT YOUR CODE HERE
+        if(row > dimension || (col > dimension) || (dimension <= 0)){           
+            return false;
+        }
+            else{
+                    return true;
+                    }
+        }
         
-        return false; // this is a stub; you may need to remove it later!
         
-    }
+        
+    
     
     /**
     * Checks if the specified square is marked.
@@ -105,8 +126,14 @@ public class TicTacToeModel {
     private boolean isSquareMarked(int row, int col) {
                 
         // INSERT YOUR CODE HERE
+        if(board[row][col] == TicTacToeSquare.EMPTY){
+            return false;
+        }
+        else{
+            return true;
+        }
         
-        return false; // this is a stub; you may need to remove it later!
+       
             
     }
     
@@ -120,11 +147,9 @@ public class TicTacToeModel {
     * @see         TicTacToeSquare
     */
     public TicTacToeSquare getSquare(int row, int col) {
-        
-        // INSERT YOUR CODE HERE
-        
-        return null; // this is a stub; you should remove it later!
-            
+       
+        return board[row][col];
+                         
     }
     
     /**
@@ -138,8 +163,18 @@ public class TicTacToeModel {
     public TicTacToeState getState() {
         
         // INSERT YOUR CODE HERE
-        
-        return null; // this is a stub; you should remove it later!
+        if(isMarkWin(TicTacToeSquare.X)){
+            return TicTacToeState.X;
+        }
+        else if(isMarkWin(TicTacToeSquare.O)){
+            return TicTacToeState.O;
+        }
+        else if(isTie()){
+            return TicTacToeState.NONE;
+        }
+        else{
+            return TicTacToeState.NONE;
+        }                  
         
     }
     
@@ -154,10 +189,55 @@ public class TicTacToeModel {
     private boolean isMarkWin(TicTacToeSquare mark) {
         
         // INSERT YOUR CODE HERE
+        int isOver = 0;
+        for(int i = 0; i < dimension; i++){
+            if(isOver != dimension){
+                isOver = 0;
+                for(int j = 0; j < dimension; j++){
+                    if(board[i][j] == mark){
+                        isOver++;
+                    }
+                }
+                if (isOver == dimension){
+                    return true;
+                }
+            }
+        }
         
-        return false; // this is a stub; you may need to remove it later!
-        
+        int isDown = 0;
+        for(int j = 0; j < dimension; j++){
+            if(isDown != dimension){
+                isDown = 0;
+                for(int i = 0; i < dimension; i++){
+                    if(board[i][j] == mark){
+                        isDown++;
+                    }
+                }
+                if (isDown == dimension){
+                    return true;
+                }
+            }
+        }
+        int back = -1;
+        for(int j = 0; j < dimension; j++){
+            if(board[j][j] == mark){
+                back++;
+            }
+            if(back == dimension -1){
+                return true;
+            }
+        }
+        for(int i = 0; i < dimension; i++){
+            if(board[i][dimension -1 -i] != mark){
+                break;
+            }
+            if(i == dimension - 1){
+                return true;
+            }
+        }
+        return false;
     }
+        
     
     /**
     * Check the squares of the board to see if the Tic-Tac-Toe game is currently
@@ -168,9 +248,21 @@ public class TicTacToeModel {
     private boolean isTie() {
         
         // INSERT YOUR CODE HERE
+        int tie = 0;
         
+        for(int i = 0; i < dimension; i++){
+            for(int j = 0; j < dimension; j++){
+                if(board[i][j] == TicTacToeSquare.EMPTY){
+                    tie++;
+                }
+            }
+        }
+       if(tie == 0){
+           return true;
+       } 
+       else{
         return false; // this is a stub; you may need to remove it later!
-        
+       }
     }
 
     /**
