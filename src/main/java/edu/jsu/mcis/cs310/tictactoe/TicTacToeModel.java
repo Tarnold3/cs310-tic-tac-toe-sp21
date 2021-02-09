@@ -315,10 +315,44 @@ public class TicTacToeModel {
     @Override
     public String toString() {
         
-        StringBuilder output = new StringBuilder();
+        StringBuilder output = new StringBuilder(" ");
         
         // INSERT YOUR CODE HERE
-        
+       output.append("\n");
+       output.append(" ");
+       for(int i = 0; i < dimension; i++){
+           output.append(i);
+       }
+       output.append("\n");
+       for(int i = 0; i < dimension; i++){
+           for(int j = 0; j < dimension; j++){
+               if(j == 0){
+                   output.append(i);
+                   output.append(" ");
+                   output.append(board[i][j]);
+               }
+               else if(j > 0){
+                   output.append(board[i][j]);
+               }
+               if(j == dimension - 1){
+                   output.append("\n");
+               }
+           }
+       }
+       
+        /*
+        for(int z=0; z < board.length; ++z){
+            output.append(z+"");
+        }
+        output.append("\n");
+        for(int i = 0; i < board.length; ++i){
+            output.append(i+" ");
+        for(int j = 0; j < board[j].length;++j){
+            output.append(board[i][j].toString());
+        }
+        output.append("\n");
+        }
+        */
         return output.toString();
         
     }

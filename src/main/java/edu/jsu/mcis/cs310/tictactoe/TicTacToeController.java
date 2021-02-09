@@ -43,18 +43,31 @@ public class TicTacToeController {
 
     public void start() {
     
-        /* MAIN LOOP (repeats until game is over) */
+    while (!model.isGameover()){
+        view.showBoard(model.toString());
+        TicTacToeMove move = view.getNextMove(model.isXTurn());
+        int row = move.getRow();
+        int col = move.getCol();
+        
+        boolean mark = model.makeMark(row, col);
+        
+        if (mark == false){
+            view.showInputError();
+ /*           
+        // MAIN LOOP (repeats until game is over) //
         //While loop keeps the moves repeating until the game is over
         while(model.isGameover() == false) {
             view.showBoard(model.toString());
-            TicTacToeMove nextMove = view.getNextMove(model.isXTurn());
+           TicTacToeMove nextMove = view.getNextMove(model.isXTurn());
         //Logic gate that if passed will end the game
             if(model.makeMark(nextMove.getRow(), nextMove.getCol()) == false){
                 view.showInputError();
+*/
             }
-        }
+        } 
+    
         
-        /* Display Results and Exit */
+        // Display Results and Exit //
 
         view.showBoard(model.toString());
 
@@ -62,4 +75,5 @@ public class TicTacToeController {
         
     }
 
-}
+}   
+    
