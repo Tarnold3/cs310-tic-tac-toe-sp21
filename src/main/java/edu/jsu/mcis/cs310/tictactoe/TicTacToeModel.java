@@ -195,7 +195,7 @@ public class TicTacToeModel {
             return TicTacToeState.O;
         }
         else if(isTie()){
-            return TicTacToeState.NONE;
+            return TicTacToeState.TIE;
         }
         else{
             return TicTacToeState.NONE;
@@ -273,7 +273,17 @@ public class TicTacToeModel {
     private boolean isTie() {
         
         // INSERT YOUR CODE HERE
-        int tie = 0;
+     boolean emptySquare = false;
+     
+        for(int r = 0; r < dimension; r++){
+        for(int c = 0; c < dimension; c++){
+            if(board[r][c] == TicTacToeSquare.EMPTY){
+                emptySquare = true;
+            }
+        }
+    }
+        return emptySquare == false && (isMarkWin(TicTacToeSquare.O)== false || isMarkWin(TicTacToeSquare.X)== false);
+/*        int tie = 0;
         
         for(int i = 0; i < dimension; i++){
             for(int j = 0; j < dimension; j++){
@@ -288,6 +298,7 @@ public class TicTacToeModel {
        else{
         return false; // this is a stub; you may need to remove it later!
        }
+*/   
     }
 
     /**

@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class TicTacToeView {
     
-    private Scanner keyboard;
+    private final Scanner keyboard;
     
     /**
     * Constructor.  This version of the Tic-Tac-Toe game uses the console for
