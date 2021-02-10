@@ -76,7 +76,23 @@ public class TicTacToeModel {
     */
     public boolean makeMark(int row, int col) {
         
-        if(xTurn == true && (isValidSquare(row, col)== true) && (isSquareMarked(row, col) == false)){
+        if(isValidSquare(row, col) == true && isSquareMarked(row, col) == false){
+            if(isXTurn() == true){
+                board[row][col] = TicTacToeSquare.X;
+                xTurn = !xTurn;
+                return true;
+            }
+            else{
+                board[row][col] = TicTacToeSquare.O;
+                xTurn = !xTurn;
+                return true;
+            }
+        }       
+        else{
+            return false;
+        }
+    }
+    /*    if(xTurn == true && (isValidSquare(row, col)== true) && (isSquareMarked(row, col) == false)){
         xTurn = !xTurn;
         board[row][col] = TicTacToeSquare.X;
         return true;
@@ -89,7 +105,8 @@ public class TicTacToeModel {
         else{
         return false;
                 }
-    }
+    */   
+    
     
     /**
     * Checks if the specified square is within range (that is, within the bounds
@@ -103,14 +120,22 @@ public class TicTacToeModel {
     private boolean isValidSquare(int row, int col) {
         
         // INSERT YOUR CODE HERE
-        if(row > dimension || (col > dimension) || (dimension <= 0)){           
-            return false;
+     boolean validSquare = false;
+     if((row < dimension)&& (row >= 0)){
+         if((col < dimension) && (col >= 0)){
+             validSquare = true;
+         }
+     }
+      return validSquare;
+    }
+    /*    if((row < dimension & row >= 0) && (col < dimension & col >= 0)){           
+            return true;
         }
             else{
-                    return true;
+                    return false;
                     }
         }
-        
+    */   
         
         
     

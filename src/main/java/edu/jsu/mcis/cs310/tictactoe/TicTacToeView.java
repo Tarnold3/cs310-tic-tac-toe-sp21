@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class TicTacToeView {
     
-    private final Scanner keyboard;
+    private Scanner keyboard;
     
     /**
     * Constructor.  This version of the Tic-Tac-Toe game uses the console for
@@ -44,21 +44,30 @@ public class TicTacToeView {
         
         //If it is X's turn to move
         if (isXTurn == true){
-            System.out.println("Player 1 (X) Move:");
-            System.out.println("Enter the row and column numbers, seperated by a space:");
+            System.out.println("Player 1 (X) Move:\n");
+            System.out.print("Enter the row and column numbers, seperated by a space: ");
             
         }
         //If it is O's turn to move
         else{     
-            System.out.println("Player 2 (O) Move:");
-            System.out.println("Enter the row and column numbers, seperated by a space:");
+            System.out.println("Player 2 (O) Move:\n");
+            System.out.print("Enter the row and column numbers, seperated by a space: ");
 
         }
-        int row = keyboard.nextInt();
-        int column = keyboard.nextInt();
+        /*
+        String input = keyboard.nextLine();
+        String[] piece = input.split(" ");
+        int[] intPiece = {Integer.parseInt(piece[0]), Integer.parseInt(piece[1])};
         
-        TicTacToeMove move = new TicTacToeMove(row, column);
+        return new TicTacToeMove (intPiece[0], intPiece[1]);
+        */
+              
+        int row = keyboard.nextInt();
+        int col = keyboard.nextInt();
+        
+        TicTacToeMove move = new TicTacToeMove(row, col);
         return move;
+               
     }
     
     /**
